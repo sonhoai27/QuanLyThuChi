@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuanLyThuChi</string>
+    <string name="menu_add">Thêm</string>
+    <string name="menu_save">Lưu</string>
+    <string name="menu_exit">Thoát</string>
+    <string name="btn_add">Thêm</string>
+    <string name="btn_retype">Nhập lại</string>
+    <string name="btn_show">Hiển thị</string>
+    <string name="edt_content">Nhập vào nội dung</string>
+    <string name="edt_amount">Nhập vào số tiền</string>
+</resources>
