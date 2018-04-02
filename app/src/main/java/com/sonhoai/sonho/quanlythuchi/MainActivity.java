@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void actionExit(){
+        //thoát
         finish();
     }
     @Override
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             //nhận dữ liệu từ bên màn hình 2, màn hình 1 nhận, sau đó ép về kiểu arraylist
             List<ThuChi> temp = new ArrayList<>();
             temp = (ArrayList<ThuChi>)data.getSerializableExtra("LIST");
-
+            //duyệt từng phần tử và cập nhật lại mảng gốc
             for (int i = 0; i < temp.size(); i++){
                 thuChiList.add(new ThuChi(
                    temp.get(i).getId(),
