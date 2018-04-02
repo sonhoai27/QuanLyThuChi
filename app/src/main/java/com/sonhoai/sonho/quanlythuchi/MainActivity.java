@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lvThuChi;
     private List<ThuChi> thuChiList = new ArrayList<>();
     private ThuChiBaseAdapter adapter;
-    private DBHelper dbHelper;
+    private DB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intentAdd, 123);
     }
     private void actionSave(){
-        long kq = dbHelper.add(thuChiList);
+        long kq = db.add(thuChiList);
         if(kq>0){
             Toast.makeText(getApplicationContext(), "Đã thêm vào: "+kq, Toast.LENGTH_SHORT).show();
         }
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == 123 && data != null){
+            //nhận dữ liệu từ bên màn hình 2, màn hình 1 nhận, sau đó ép về kiểu arraylist
             List<ThuChi> temp = new ArrayList<>();
             temp = (ArrayList<ThuChi>)data.getSerializableExtra("LIST");
 
@@ -75,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        dbHelper = new DBHelper(getApplicationContext(),DBHelper.THUCHI_TABLE_NAME,null,DBHelper.VERSION);
+        db = new DB(getApplicationContext(), DB.DBNAME,null, DB.VERSION);
         lvThuChi = (ListView) findViewById(R.id.lvThuChi);
-        thuChiList = dbHelper.getData();
+        thuChiList = db.getData();
 
         adapter = new ThuChiBaseAdapter(
                 getApplicationContext(),
